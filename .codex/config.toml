@@ -151,3 +151,10 @@ default_mode_request_user_input = true
 # It can go when no supported project refreshes with a 2.11.0 tool.
 [shell_environment_policy]
 set = { AIDLC_RULES_DIR = "" }
+
+# Context7 provides library documentation through its remote MCP server.
+# Set CONTEXT7_API_KEY in the environment to authenticate requests.
+[mcp_servers.context7]
+type = "http"
+url = "https://mcp.context7.com/mcp"
+bearer_token_env_var = "CONTEXT7_API_KEY"
