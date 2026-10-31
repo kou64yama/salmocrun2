@@ -1,4 +1,48 @@
 import { test, expect } from "@playwright/test";
+
+test("認識中に画像と候補を送信せず終了後に履歴を残さない", async ({ page }) => {
+  const requests: { url: string; method: string; body: string | null }[] = [];
+  page.on("request", (request) => {
+    requests.push({
+      url: request.url(),
+      method: request.method(),
+      body: request.postData(),
+    });
+  });
+  await page.goto("/");
+  await page
+    .getByTestId("image-input")
+    .setInputFiles("tests/fixtures/SHQ4-PVS6-ALNL-VA6D.jpg");
+  await expect(page.locator(".code")).not.toBeEmpty({ timeout: 90000 });
+  const candidate = await page.locator(".code").innerText();
+  const origin = new URL(page.url()).origin;
+  expect(
+    requests.filter(
+      (request) =>
+        /^https?:/.test(request.url) && new URL(request.url).origin !== origin,
+    ),
+  ).toEqual([]);
+  expect(
+    requests.filter((request) => !["GET", "HEAD"].includes(request.method)),
+  ).toEqual([]);
+  expect(
+    requests.some(
+      (request) =>
+        request.url.includes(candidate) || request.body?.includes(candidate),
+    ),
+  ).toBe(false);
+  await page.reload();
+  await expect(page.locator(".code")).toHaveCount(0);
+  const persisted = await page.evaluate(async () => ({
+    local: JSON.stringify(localStorage),
+    session: JSON.stringify(sessionStorage),
+    databases: (await indexedDB.databases()).map((database) => database.name),
+    cookies: document.cookie,
+  }));
+  expect(JSON.stringify(persisted)).not.toContain(candidate);
+  expect(JSON.stringify(persisted)).not.toContain("SHQ4-PVS6-ALNL-VA6D.jpg");
+  expect(persisted.databases).toEqual([]);
+});
 test("実画像を選択して認識する", async ({ page }) => {
   await page.addInitScript(() => {
     Object.defineProperty(navigator, "canShare", { value: () => true });

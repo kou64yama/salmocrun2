@@ -8,11 +8,13 @@
     { "path": "tsconfig.json" },
     { "path": "vite.config.ts" },
     { "path": "playwright.config.ts" },
+    { "path": "eslint.config.js" },
     { "path": "index.html" },
     { "path": "src/" },
     { "path": "scripts/" },
     { "path": "public/" },
     { "path": "e2e/" },
+    { "path": "tests/" },
     { "path": ".github/workflows/ci.yml" }
   ]
 }
