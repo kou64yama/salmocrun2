@@ -74,6 +74,8 @@ describe("画面", () => {
       target: { files: [new File(["x"], "x.jpg", { type: "image/jpeg" })] },
     });
     fireEvent.click(await screen.findByText("再試行"));
-    await waitFor(() => expect(recognize).toHaveBeenCalledTimes(2));
+    await waitFor(() => {
+      expect(recognize).toHaveBeenCalledTimes(2);
+    });
   });
 });

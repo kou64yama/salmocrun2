@@ -1,9 +1,38 @@
-import js from '@eslint/js';
-import tseslint from 'typescript-eslint';
+import js from "@eslint/js";
+import vitest from "@vitest/eslint-plugin";
+import { defineConfig, globalIgnores } from "eslint/config";
+import globals from "globals";
+import tseslint from "typescript-eslint";
 
-export default tseslint.config(
-  { ignores: ['coverage/**', 'dist/**', 'node_modules/**', 'public/**'] },
-  js.configs.recommended,
-  ...tseslint.configs.recommended,
-  { languageOptions: { globals: { document: 'readonly', window: 'readonly', navigator: 'readonly', File: 'readonly', HTMLCanvasElement: 'readonly', CanvasRenderingContext2D: 'readonly', ShareData: 'readonly', URL: 'readonly', Image: 'readonly', createImageBitmap: 'readonly', process: 'readonly', console: 'readonly', Buffer: 'readonly' } } },
+export default defineConfig(
+  globalIgnores([
+    "coverage/**",
+    "dist/**",
+    "node_modules/**",
+    "public/ocr/**",
+    "aidlc/**",
+    ".agents/**",
+    ".codex/**",
+    ".serena/**",
+    "playwright-report/**",
+    "test-results/**",
+  ]),
+  {
+    files: ["**/*.{js,mjs,ts,tsx}"],
+    extends: [js.configs.recommended],
+    languageOptions: { globals: { ...globals.browser, ...globals.node } },
+  },
+  {
+    files: ["**/*.{ts,tsx}"],
+    extends: [
+      tseslint.configs.strictTypeChecked,
+      tseslint.configs.stylisticTypeChecked,
+    ],
+    languageOptions: { parserOptions: { project: "./tsconfig.eslint.json" } },
+  },
+  {
+    files: ["src/**/*.test.{ts,tsx}"],
+    plugins: { vitest },
+    rules: { ...vitest.configs.recommended.rules },
+  },
 );

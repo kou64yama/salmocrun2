@@ -1,0 +1,13 @@
+node_modules/
+dist/
+coverage/
+public/ocr/
+*.tsbuildinfo
+playwright-report/
+test-results/
+aidlc/
+.agents/
+.codex/
+.serena/
+
+AGENTS.md

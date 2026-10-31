@@ -47,11 +47,12 @@ test("実画像を選択して認識する", async ({ page }) => {
   await page.addInitScript(() => {
     Object.defineProperty(navigator, "canShare", { value: () => true });
     Object.defineProperty(navigator, "share", {
-      value: async (data: ShareData) => {
+      value: (data: ShareData) => {
         (window as unknown as { shared: unknown }).shared = {
           text: data.text,
           name: data.files?.[0]?.name,
         };
+        return Promise.resolve();
       },
     });
   });

@@ -11,7 +11,10 @@ import {
 } from "@mantine/core";
 import { recognize } from "./recognition";
 import { canShare, copy, share } from "./share";
-type Result = { text: string; valid: boolean };
+interface Result {
+  text: string;
+  valid: boolean;
+}
 export default function App() {
   const [file, setFile] = useState<File | null>(null);
   const [preview, setPreview] = useState("");
@@ -34,7 +37,9 @@ export default function App() {
     }
     const url = URL.createObjectURL(file);
     setPreview(url);
-    return () => URL.revokeObjectURL(url);
+    return () => {
+      URL.revokeObjectURL(url);
+    };
   }, [file]);
   async function run(f: File) {
     const id = ++seq.current;

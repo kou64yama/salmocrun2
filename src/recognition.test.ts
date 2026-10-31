@@ -5,30 +5,37 @@ const worker = vi.hoisted(() => ({
   terminate: vi.fn(),
 }));
 vi.mock("tesseract.js", () => ({
-  createWorker: vi.fn(async () => worker),
+  createWorker: vi.fn(() => Promise.resolve(worker)),
   PSM: { SINGLE_LINE: "7" },
 }));
 import { parseCandidate, cropBounds, recognize } from "./recognition";
 describe("認識結果", () => {
-  it("空白を除いてコードを判定", () =>
+  it("空白を除いてコードを判定", () => {
     expect(parseCandidate(" SHQ4-PVS6-ALNL-VA6D\n")).toEqual({
       text: "SHQ4-PVS6-ALNL-VA6D",
       valid: true,
-    }));
-  it("空は失敗", () => expect(parseCandidate(" \n ")).toBeNull());
-  it("不正な候補も保持", () =>
-    expect(parseCandidate("ABC")?.valid).toBe(false));
-  it("禁止文字を拒否", () =>
-    expect(parseCandidate("SIQ4-PVS6-ALNL-VA6D")?.valid).toBe(false));
-  it("小文字を正規化しない", () =>
-    expect(parseCandidate("shq4-pvs6-alnl-va6d")?.valid).toBe(false));
-  it("画像寸法に合わせて右下を切り出す", () =>
+    });
+  });
+  it("空は失敗", () => {
+    expect(parseCandidate(" \n ")).toBeNull();
+  });
+  it("不正な候補も保持", () => {
+    expect(parseCandidate("ABC")?.valid).toBe(false);
+  });
+  it("禁止文字を拒否", () => {
+    expect(parseCandidate("SIQ4-PVS6-ALNL-VA6D")?.valid).toBe(false);
+  });
+  it("小文字を正規化しない", () => {
+    expect(parseCandidate("shq4-pvs6-alnl-va6d")?.valid).toBe(false);
+  });
+  it("画像寸法に合わせて右下を切り出す", () => {
     expect(cropBounds(1920, 1080)).toEqual({
       x: 1480,
       y: 900,
       width: 375,
       height: 50,
-    }));
+    });
+  });
   it("領域を認識し worker を終了する", async () => {
     vi.stubGlobal(
       "createImageBitmap",
