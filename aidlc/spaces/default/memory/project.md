@@ -56,11 +56,15 @@
 <!-- Format: NEVER [behavior] (affirmed [date]) -->
 <!-- Example: NEVER throw exceptions across service layer boundaries (affirmed 2026-05-17) -->
 
+この確認で新たに明示された恒久的な禁止ルールはない。 (affirmed 2026-10-29)
+
 ## Mandated
 
 <!-- Populated by practices-discovery affirmation gate. -->
 <!-- Format: ALWAYS [behavior] (affirmed [date]) -->
 <!-- Example: ALWAYS use Result<T,E> for fallible operations in service layer (affirmed 2026-05-17) -->
+
+この確認で新たに明示された恒久的な必須ルールはない。 (affirmed 2026-10-29)
 
 ## Corrections
 

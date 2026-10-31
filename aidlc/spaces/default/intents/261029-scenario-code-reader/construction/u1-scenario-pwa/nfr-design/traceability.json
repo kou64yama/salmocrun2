@@ -1,0 +1,26 @@
+{
+  "stage": "nfr-design",
+  "unit": "u1-scenario-pwa",
+  "upstream_ids": [
+    "NFR2.1",
+    "NFR1.1",
+    "NFR3.1"
+  ],
+  "coverage": [
+    {
+      "id": "NFR2.1",
+      "status": "OK",
+      "target": "performance-design.md: 対象 Chrome の検証"
+    },
+    {
+      "id": "NFR1.1",
+      "status": "OK",
+      "target": "security-design.md: 外部送信の制限"
+    },
+    {
+      "id": "NFR3.1",
+      "status": "OK",
+      "target": "security-design.md: 履歴を永続保存しない"
+    }
+  ]
+}
