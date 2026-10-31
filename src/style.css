@@ -1,0 +1,38 @@
+body {
+  background: #171b1a;
+  color: #f4f1e5;
+}
+
+.file-button {
+  display: block;
+  text-align: center;
+  border: 2px solid #e99b3c;
+  border-radius: 6px;
+  padding: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  color: #ffe0ad;
+}
+
+.file-button:focus-within {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+}
+
+.file-button input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+
+.code {
+  overflow-wrap: anywhere;
+  letter-spacing: 0.04em;
+}
+
+button:focus-visible {
+  outline: 3px solid white;
+  outline-offset: 3px;
+}

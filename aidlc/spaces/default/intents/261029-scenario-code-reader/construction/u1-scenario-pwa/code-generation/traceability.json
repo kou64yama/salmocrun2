@@ -1,0 +1,122 @@
+{
+  "stage": "code-generation",
+  "unit": "u1-scenario-pwa",
+  "upstream_ids": [
+    "AC1.1.1",
+    "AC1.1.2",
+    "AC1.1.3",
+    "AC1.1.4",
+    "AC1.1.5",
+    "AC1.1.6",
+    "AC1.2.1",
+    "AC1.2.2",
+    "AC1.2.3",
+    "AC1.3.1",
+    "AC1.3.2",
+    "AC1.3.3",
+    "AC1.3.4",
+    "NFR2.1",
+    "NFR1.1",
+    "NFR3.1",
+    "BR1.1",
+    "BR1.2",
+    "BR1.3"
+  ],
+  "coverage": [
+    {
+      "id": "AC1.1.1",
+      "status": "OK",
+      "target": "src/App.tsx"
+    },
+    {
+      "id": "AC1.1.2",
+      "status": "OK",
+      "target": "src/App.tsx"
+    },
+    {
+      "id": "AC1.1.3",
+      "status": "OK",
+      "target": "src/recognition.ts"
+    },
+    {
+      "id": "AC1.1.4",
+      "status": "OK",
+      "target": "src/App.tsx"
+    },
+    {
+      "id": "AC1.1.5",
+      "status": "OK",
+      "target": "src/recognition.ts"
+    },
+    {
+      "id": "AC1.1.6",
+      "status": "OK",
+      "target": "src/App.tsx"
+    },
+    {
+      "id": "AC1.2.1",
+      "status": "OK",
+      "target": "src/share.ts"
+    },
+    {
+      "id": "AC1.2.2",
+      "status": "OK",
+      "target": "src/share.ts"
+    },
+    {
+      "id": "AC1.2.3",
+      "status": "OK",
+      "target": "src/share.ts"
+    },
+    {
+      "id": "AC1.3.1",
+      "status": "OK",
+      "target": "vite.config.ts"
+    },
+    {
+      "id": "AC1.3.2",
+      "status": "OK",
+      "target": "src/App.tsx"
+    },
+    {
+      "id": "AC1.3.3",
+      "status": "OK",
+      "target": "src/App.tsx"
+    },
+    {
+      "id": "AC1.3.4",
+      "status": "OK",
+      "target": "src/App.tsx"
+    },
+    {
+      "id": "NFR2.1",
+      "status": "OK",
+      "target": "src/App.tsx"
+    },
+    {
+      "id": "NFR1.1",
+      "status": "OK",
+      "target": "src/App.tsx"
+    },
+    {
+      "id": "NFR3.1",
+      "status": "OK",
+      "target": "src/App.tsx"
+    },
+    {
+      "id": "BR1.1",
+      "status": "OK",
+      "target": "src/App.tsx"
+    },
+    {
+      "id": "BR1.2",
+      "status": "OK",
+      "target": "src/share.ts"
+    },
+    {
+      "id": "BR1.3",
+      "status": "OK",
+      "target": "src/App.tsx"
+    }
+  ]
+}
